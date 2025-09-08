@@ -1,0 +1,30 @@
+NYC Taxi Data Engineering Project Overview
+
+Project Purpose:
+This project builds an end-to-end data engineering pipeline to process and analyze NYC taxi trip data.
+The pipeline ingests raw trip data, cleans and transforms it, and produces summarized analytics for business insights.
+
+Data Sources:
+- Trip zone and trip type lookup tables are stored as CSV files in Azure Data Lake Storage (ADLS).
+- Raw taxi trip records are stored as Parquet files in ADLS for efficient processing and storage.
+
+Technology Stack:
+- Azure Databricks: For scalable Spark processing and Delta Lake management.
+- Delta Lake: To manage data in Bronze, Silver, and Gold layers with ACID transactions.
+- Azure Data Lake Storage (ADLS): Cloud storage for CSV and Parquet files.
+- Databricks Secrets: Secure management of credentials and authentication secrets.
+
+Project Structure:
+- /notebooks: Contains Databricks notebooks for each pipeline layer and transformation step (Bronze ingestion, Silver and Gold processing).
+- /SQL: Stores SQL query scripts used for analysis and table management in the Gold layer.
+- /docs: Holds architecture diagrams, screenshots, and project documentation.
+- /sample_data: Includes small, non-sensitive samples of input CSV data.
+
+How to Run:
+1. Configure the Azure Databricks cluster with the secret scope for client credentials.
+2. Run the notebooks in the order: Bronze layer ingestion (loads Parquet and CSV files) → Silver layer transformations → Gold layer aggregations.
+3. Use the SQL scripts for additional data queries, table history, and version management.
+
+Security:
+All sensitive credentials are securely stored and retrieved using Databricks Secrets to prevent exposure in code or repositories.
+
