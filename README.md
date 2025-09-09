@@ -1,5 +1,8 @@
 # NYC Taxi Data Engineering Project Overview
 
+![NYC Taxi Pipeline Overview](docs/nyc_taxi_pipeline_overview.png)
+
+
 ## **Project Purpose**  
 This project builds an end-to-end data engineering pipeline to process and analyze NYC taxi trip data. The pipeline ingests raw trip data, cleans and transforms it, and produces summarized analytics for business insights.
 
@@ -21,6 +24,28 @@ The pipeline implements a medallion architecture:
 - **Silver Layer:** Data cleaning, validation, and enrichment with joins  
 - **Gold Layer:** Business-ready aggregations and analytics tables
 
+## Ingestion (Bronze Layer)
+
+Designed dynamic ingestion pipelines in Azure Data Factory and/or Azure Databricks notebooks to extract NYC Taxi trip data across multiple months. 
+
+Leveraged parameterized datasets and activities, enabling scalable and reusable ingestion that loads data continuously into the Bronze layer.
+
+Raw data is ingested in Parquet format and stored securely in Azure Data Lake Storage Gen2, optimizing for performance and cost. The ingestion incorporates Databricks Unity Catalog to enforce centralized governance and secure access control.
+
+
+![Dynamic Ingestion Pipeline](docs/adf_ingestion_pipeline.png)
+
+
+
+## Silver Layer
+
+Performed data cleaning, validation, and enrichment of the raw Bronze data. Applied transformations and joins using Azure Databricks notebooks and PySpark to produce refined datasets suitable for analysis. This layer ensures data quality and applies schema enforcement and evolution using Delta Lake features.
+
+
+## Gold Layer
+
+Created business-level aggregations and analytics tables optimized for reporting and visualization. Utilized SQL within Azure Databricks to generate summaries and key performance indicators (KPIs). This layer powers dashboards and BI tools, leveraging Delta Lake for ACID transactions and efficient querying.
+
 
 ## **Project Structure** 
 
@@ -31,6 +56,8 @@ yc-taxi-data-engineering/
 ├── sample_data/ # Sample CSV files for testing
 ├── .gitignore # Git ignore file
 └── README.md # This file
+
+![NYC Taxi Security](docs/Data_Access.png)
 
 ## **Security Implementation**  
 - All sensitive credentials (client secrets, connection strings) are stored securely using **Databricks Secrets**  
